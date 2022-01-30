@@ -1,4 +1,6 @@
 [![<evanbiederstedt>](https://circleci.com/gh/evanbiederstedt/array-mid.svg?style=svg)](https://app.circleci.com/pipelines/github/evanbiederstedt/array-mid)
+[![NPM version](https://img.shields.io/npm/v/array-mid.svg)](https://www.npmjs.com/package/array-mid)
+
 
 # array-mid
 
