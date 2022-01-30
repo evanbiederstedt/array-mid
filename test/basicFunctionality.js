@@ -38,12 +38,22 @@ describe('basic functionality test', function(){
     }); 
 
     let seven = [1, 2, 3, 4, 5, 6, 7];
-    it('check n is 3, array length 7', function(){
+    it('check n > 1, array length 7', function(){
         expect(mid(seven)).to.have.members([4])
         expect(mid(seven, 2)).to.have.members([3, 4, 5]);  
         expect(mid(seven, 3)).to.have.members([3, 4, 5]);  
+        expect(mid(seven, 3, 'left')).to.have.members([1, 2, 3, 4]);  
+        expect(mid(seven, 3, 'right')).to.have.members([4, 5, 6, 7]);         
     });    
 
+    let six = [1, 2, 3, 4, 5, 6];
+    it('check n > 1, array length 6', function(){
+        expect(mid(six)).to.have.members([3, 4])
+        expect(mid(six, 2)).to.have.members([3, 4, 5]);  
+        expect(mid(six, 3)).to.have.members([3, 4, 5]);  
+        expect(mid(six, 3, 'left')).to.have.members([1, 2, 3]);  
+        expect(mid(six, 3, 'right')).to.have.members([4, 5, 6]);         
+    });    
 
  
 });

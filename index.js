@@ -1,7 +1,14 @@
 
 // inspired by https://github.com/jonschlinkert/array-first
 
-// Get middle element in an n-element array (either left, right, or both elements if n is odd)
+// 
+/**
+ * Get middle element in an n-element array (either left, right, or both elements if n is odd)
+ * @param  {[Array]} arr An array 
+ * @param  {[Number]} n Positive integer specifying the number of elements to achieve around the middle of the array
+ * @return {[String]} position Specifies the position of elements to retrieve for even-numbered arrays. Accepted values are "left", "right", or "center". The parameter "left" retrieves elements to the left of the midpoint in the array, "right" retrieves elements to the right of the midpoint in the array, and "center" retries elements around the midpoint. 
+  * @return {[Array]} Returns a subsetted array from arr. Note that this function always returns an array, even an array of only one element
+ */
 module.exports = function mid(arr, n = 1, position = 'center') {
 
 	// basic checks of inputs
@@ -76,48 +83,48 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 		}
 	} else {
 		// n > 1
-		if (position === 'center') {
-			if (len === 3) {
-				//throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return 2 elements in this case. Please fix by specifying either "left" or "right".');	
-				return arr;
-			} else {
+		if (checkOdd(len)){ 
+			if (position === 'center') {
+				if (len === 3) {
+					//throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return 2 elements in this case. Please fix by specifying either "left" or "right".');	
+					return arr;
+				} else {
+					let padding = Math.floor(n/2);
+					// NOTE: we will always return an odd number of elements here
+					// if n is even, the user needs to specify left or right...
+					// Note in README for users
+					return arr.slice(middlePosition-padding, middlePosition+padding+1); 
+				}
+			} else if (position === 'left') {
+				let leftmostPosition = middlePosition - n;
+				leftmostPosition = ifNegativeMakeZero(leftmostPosition);
+				return arr.slice(leftmostPosition, middlePosition + 1);
+			} else if (position === 'right') {
+				let rightmostPosition = middlePosition + n; 
+				// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
+				return arr.slice(middlePosition, rightmostPosition + 1);
+			}
+		} else {
+			if (position === 'center') {
 				let padding = Math.floor(n/2);
 				// NOTE: we will always return an odd number of elements here
 				// if n is even, the user needs to specify left or right...
 				// Note in README for users
-				if (checkOdd(len)){
-					return arr.slice(middlePosition-padding, middlePosition+padding+1); 
-				} else {
-					return arr.slice(middlePosition-padding, middlePosition+padding); 
-				}
+				return arr.slice(middlePosition-padding, middlePosition+padding+1); 
+			} else if (position === 'left') {
+				let leftmostPosition = middlePosition - n;
+				leftmostPosition = ifNegativeMakeZero(leftmostPosition);
+				return arr.slice(leftmostPosition, middlePosition);
+			} else if (position === 'right') {
+				let rightmostPosition = middlePosition + n; 
+				// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
+				return arr.slice(middlePosition, rightmostPosition);
 			}
-		} else if (position === 'left') {
-			let leftmostPosition = middlePosition - n;
-			leftmostPosition = ifNegativeMakeZero(leftmostPosition);
-			return arr.slice(leftmostPosition, middlePosition + 1);
-		} else if (position === 'right') {
-			let rightmostPosition = middlePosition + n; 
-			// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
-			return arr.slice(middlePosition, rightmostPosition);
 		}
 	}
 };
 
 
-	/*} else {
-		// length is even
-		if (position === 'center') {
-			let padding = Math.floor(n/2);
-			return arr.slice(middlePosition-padding, middlePosition+padding); 
-		} else if (position === 'left') {
-			let leftmostPosition = middlePosition - n;
-			leftmostPosition = ifNegativeMakeZero(leftmostPosition);
-			return arr.slice(leftmostPosition, middlePosition + 1);
-		} else if (position === 'right') {
-			let rightmostPosition = middlePosition + n; 
-			// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
-			return arr.slice(middlePosition, rightmostPosition);
-		}		
-	}
-	*/
+// return arr.slice(middlePosition-padding, middlePosition+padding); 
+
 
