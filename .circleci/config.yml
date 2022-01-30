@@ -23,9 +23,6 @@ jobs:
       - run:    
           name: Run tests
           command: npm test
-      - run:
-          name: Generate coverage report
-          command: npm run cover
       - store_artifacts: # Save tests results as artifacts
           path: test-results.xml
           prefix: tests
