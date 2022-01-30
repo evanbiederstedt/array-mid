@@ -3,11 +3,17 @@
 
 // 
 /**
+ * 
  * Get middle element in an n-element array (either left, right, or both elements if n is odd)
  * @param  {[Array]} arr An array 
  * @param  {[Number]} n Positive integer specifying the number of elements to achieve around the middle of the array
- * @return {[String]} position Specifies the position of elements to retrieve for even-numbered arrays. Accepted values are "left", "right", or "center". The parameter "left" retrieves elements to the left of the midpoint in the array, "right" retrieves elements to the right of the midpoint in the array, and "center" retries elements around the midpoint. 
-  * @return {[Array]} Returns a subsetted array from arr. Note that this function always returns an array, even an array of only one element
+ * @return {[String]} position Specifies the position of elements to retrieve for even-numbered arrays. 
+ *                             Accepted values are "left", "right", or "center". The parameter "left" retrieves elements to the 
+ *                             left of the midpoint in the array, "right" retrieves elements to the right of the midpoint in the array, 
+ *                             and "center" retries elements around the midpoint. 
+ * @return {[Array]} Returns a subsetted array from arr. Note that this function always returns an array, 
+ *                             even an array of only one element
+ *
  */
 module.exports = function mid(arr, n = 1, position = 'center') {
 
@@ -123,8 +129,5 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 		}
 	}
 };
-
-
-// return arr.slice(middlePosition-padding, middlePosition+padding); 
 
 
