@@ -1,6 +1,5 @@
 # array-mid
 
-
 Get middle element in an n-element array (either left, right, or both elements if n is odd)
 
 
@@ -19,4 +18,4 @@ npm install array-mid
 
 ## Background
 
-To be honest, I just wanted to experiment with uploading something (somewhat potentially useful) to npm.
+To be honest, I just wanted to experiment with uploading something (potentially useful) to npm.
