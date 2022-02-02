@@ -1,6 +1,6 @@
 {
   "name": "array-mid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get middle element in an n-element array (either left, right, or both elements if n is odd)",
   "main": "index.js",
   "scripts": {
