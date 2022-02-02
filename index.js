@@ -74,58 +74,54 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 
 	const middlePosition = Math.floor(len/2);
 
-	if (n === 1) {
-		if (checkOdd(len)){
-			return [arr[middlePosition]];
-		} else {
-			// length is even 
-			if (position === 'center') {
-				return arr.slice(middlePosition-1, middlePosition+1);
-			} else if (position === 'left') {
-				return arr.slice(middlePosition-1, middlePosition);
-			} else if (position === 'right') {
-				return arr.slice(middlePosition, middlePosition+1);
-			}
+	if (n === 1 && checkOdd(len)) {
+		return [arr[middlePosition]];		
+	} else if (n === 1 && !checkOdd(len)) {
+		// length is even 
+		if (position === 'center') {
+			return arr.slice(middlePosition-1, middlePosition+1);
+		} else if (position === 'left') {
+			return arr.slice(middlePosition-1, middlePosition);
+		} else if (position === 'right') {
+			return arr.slice(middlePosition, middlePosition+1);
 		}
-	} else {
-		// n > 1
-		if (checkOdd(len)){ 
-			if (position === 'center') {
-				if (len === 3) {
-					//throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return 2 elements in this case. Please fix by specifying either "left" or "right".');	
-					return arr;
-				} else {
-					let padding = Math.floor(n/2);
-					// NOTE: we will always return an odd number of elements here
-					// if n is even, the user needs to specify left or right...
-					// Note in README for users
-					return arr.slice(middlePosition-padding, middlePosition+padding+1); 
-				}
-			} else if (position === 'left') {
-				let leftmostPosition = middlePosition - n;
-				leftmostPosition = ifNegativeMakeZero(leftmostPosition);
-				return arr.slice(leftmostPosition, middlePosition + 1);
-			} else if (position === 'right') {
-				let rightmostPosition = middlePosition + n; 
-				// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
-				return arr.slice(middlePosition, rightmostPosition + 1);
-			}
-		} else {
-			if (position === 'center') {
+	} else if (n > 1 && checkOdd(len)) {
+		if (position === 'center') {
+			if (len === 3) {
+				// special case---user error?
+				// throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return 2 elements in this case. Please fix by specifying either "left" or "right".');	
+				return arr;
+			} else {
 				let padding = Math.floor(n/2);
 				// NOTE: we will always return an odd number of elements here
 				// if n is even, the user needs to specify left or right...
 				// Note in README for users
 				return arr.slice(middlePosition-padding, middlePosition+padding+1); 
-			} else if (position === 'left') {
-				let leftmostPosition = middlePosition - n;
-				leftmostPosition = ifNegativeMakeZero(leftmostPosition);
-				return arr.slice(leftmostPosition, middlePosition);
-			} else if (position === 'right') {
-				let rightmostPosition = middlePosition + n; 
-				// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
-				return arr.slice(middlePosition, rightmostPosition);
 			}
+		} else if (position === 'left') {
+			let leftmostPosition = middlePosition - n;
+			leftmostPosition = ifNegativeMakeZero(leftmostPosition);
+			return arr.slice(leftmostPosition, middlePosition + 1);
+		} else if (position === 'right') {
+			let rightmostPosition = middlePosition + n; 
+			// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
+			return arr.slice(middlePosition, rightmostPosition + 1);
+		}
+	} else if (n > 1 && !checkOdd(len)) {
+		if (position === 'center') {
+			let padding = Math.floor(n/2);
+			// NOTE: we will always return an odd number of elements here
+			// if n is even, the user needs to specify left or right...
+			// Note in README for users
+			return arr.slice(middlePosition-padding, middlePosition+padding+1); 
+		} else if (position === 'left') {
+			let leftmostPosition = middlePosition - n;
+			leftmostPosition = ifNegativeMakeZero(leftmostPosition);
+			return arr.slice(leftmostPosition, middlePosition);
+		} else if (position === 'right') {
+			let rightmostPosition = middlePosition + n; 
+			// note: doesn't matter if rightmostPosition > len, .slice() still works as expected
+			return arr.slice(middlePosition, rightmostPosition);
 		}
 	}
 };
