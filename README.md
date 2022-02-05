@@ -31,6 +31,10 @@ mid(seven, 3, 'left');
 mid(seven, 3, 'right');
 //=> [4, 5, 6, 7]
 
+// error: mid(seven, 2)
+// Cannot return an even number of elements "n" from position="center" of an odd-lengthed array.
+
+
 // array with an even number of elements
 let six = [1, 2, 3, 4, 5, 6];
 mid(six);
@@ -40,10 +44,12 @@ mid(six, 3, 'left');
 mid(six, 3, 'right');
 //=> [4, 5, 6]
 
+// error: mid(six, 3)
+// Cannot return an odd number of elements "n" from position="center" of an even-lengthed array
+
+
 ```
 
 ## Background
-
-To be honest, I just wanted to experiment with uploading something (potentially useful) to npm.
 
 Based on [array-first](https://github.com/jonschlinkert/array-first).

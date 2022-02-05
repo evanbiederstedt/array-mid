@@ -39,8 +39,8 @@ describe('basic functionality test', function(){
 
     let seven = [1, 2, 3, 4, 5, 6, 7];
     it('check n > 1, array length 7', function(){
-        expect(mid(seven)).to.have.members([4])
-        expect(mid(seven, 2)).to.have.members([3, 4, 5]);  
+        expect(mid(seven)).to.have.members([4]) 
+        expect(function() { mid(seven, 2)}).to.throw('Users cannot return an even number of elements "n" from position="center" of an odd-lengthed array. This is logically inconsistent. Please fix.'); 
         expect(mid(seven, 3)).to.have.members([3, 4, 5]);  
         expect(mid(seven, 3, 'left')).to.have.members([1, 2, 3, 4]);  
         expect(mid(seven, 3, 'right')).to.have.members([4, 5, 6, 7]);         
@@ -49,8 +49,8 @@ describe('basic functionality test', function(){
     let six = [1, 2, 3, 4, 5, 6];
     it('check n > 1, array length 6', function(){
         expect(mid(six)).to.have.members([3, 4])
-        expect(mid(six, 2)).to.have.members([3, 4, 5]);  
-        expect(mid(six, 3)).to.have.members([3, 4, 5]);  
+        expect(mid(six, 2)).to.have.members([3, 4]);  
+        expect(function() { mid(six, 3)}).to.throw('Users cannot return an odd number of elements "n" from position="center" of an even-lengthed array. This is logically inconsistent. Please fix.'); 
         expect(mid(six, 3, 'left')).to.have.members([1, 2, 3]);  
         expect(mid(six, 3, 'right')).to.have.members([4, 5, 6]);         
     });    

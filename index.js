@@ -6,7 +6,7 @@
  * 
  * Get middle element in an n-element array (either left, right, or both elements if n is odd)
  * @param  {[Array]} arr An array 
- * @param  {[Number]} n Positive integer specifying the number of elements to achieve around the middle of the array
+ * @param  {[Number]} n Positive integer specifying the number of elements to return around the middle of the array
  * @return {[String]} position Specifies the position of elements to retrieve for even-numbered arrays. 
  *                             Accepted values are "left", "right", or "center". The parameter "left" retrieves elements to the 
  *                             left of the midpoint in the array, "right" retrieves elements to the right of the midpoint in the array, 
@@ -57,11 +57,7 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 	}
 
 	function checkOdd(num) {
-		if (num % 2 == 1) {
-			return true;
-		} else {
-			return false;
-		}
+		return num % 2 === 1;
 	}
 
 	function ifNegativeMakeZero(num) {
@@ -87,9 +83,12 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 		}
 	} else if (n > 1 && checkOdd(len)) {
 		if (position === 'center') {
+			if (!checkOdd(n)) {
+				throw new Error('Users cannot return an even number of elements "n" from position="center" of an odd-lengthed array. This is logically inconsistent. Please fix.');
+			}
 			if (len === 3) {
 				// special case---user error?
-				// throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return 2 elements in this case. Please fix by specifying either "left" or "right".');	
+				// throw new Error('length of the array is 3, but n > 1 and position is "center". Logically cannot return n > 1 elements in this case. Please fix by specifying either "left" or "right".');	
 				return arr;
 			} else {
 				let padding = Math.floor(n/2);
@@ -109,11 +108,14 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 		}
 	} else if (n > 1 && !checkOdd(len)) {
 		if (position === 'center') {
+			if (checkOdd(n)) {
+				throw new Error('Users cannot return an odd number of elements "n" from position="center" of an even-lengthed array. This is logically inconsistent. Please fix.');
+			}
 			let padding = Math.floor(n/2);
 			// NOTE: we will always return an odd number of elements here
 			// if n is even, the user needs to specify left or right...
 			// Note in README for users
-			return arr.slice(middlePosition-padding, middlePosition+padding+1); 
+			return arr.slice(middlePosition-padding, middlePosition+padding); 
 		} else if (position === 'left') {
 			let leftmostPosition = middlePosition - n;
 			leftmostPosition = ifNegativeMakeZero(leftmostPosition);
