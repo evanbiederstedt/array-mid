@@ -31,21 +31,24 @@ mid(seven, 3, 'left');
 mid(seven, 3, 'right');
 //=> [4, 5, 6, 7]
 
-// error: mid(seven, 2)
-// Cannot return an even number of elements "n" from position="center" of an odd-lengthed array.
+// Error thrown here: mid(seven, 2)
+// Cannot return an even number of elements n from position="center" of an odd-lengthed array.
 
 
 // array with an even number of elements
 let six = [1, 2, 3, 4, 5, 6];
-mid(six);
+
+// Note: for even-lengthed arrays, mid() returns two elements by default (even with n = 1)
+mid(six);  
 //=> [3, 4]
+
 mid(six, 3, 'left');
 //=> [1, 2, 3]
 mid(six, 3, 'right');
 //=> [4, 5, 6]
 
-// error: mid(six, 3)
-// Cannot return an odd number of elements "n" from position="center" of an even-lengthed array
+// Error thrown here: mid(six, 3)
+// Cannot return an odd number of elements n > 1 from position="center" of an even-lengthed array
 
 
 ```
