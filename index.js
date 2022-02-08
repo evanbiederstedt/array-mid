@@ -105,8 +105,8 @@ module.exports = function mid(arr, n = 1, position = 'center') {
 				throw new Error('Users cannot return an odd number of elements n > 1 from position="center" of an even-lengthed array. This is logically inconsistent. Please fix.');
 			}
 			let padding = Math.floor(n/2);
-			// NOTE: we will always return an odd number of elements here
-			// if n is even, the user needs to specify left or right...
+			// NOTE: we will always return an even number of elements here
+			// if n is odd, the user needs to specify left or right...
 			// Note in README for users
 			return arr.slice(middlePosition-padding, middlePosition+padding); 
 		} else if (position === 'left') {
